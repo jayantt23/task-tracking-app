@@ -4,6 +4,7 @@ import com.jay.tasks.domain.dto.TaskListDto;
 import com.jay.tasks.domain.entities.TaskList;
 import com.jay.tasks.mappers.TaskListMapper;
 import com.jay.tasks.services.TaskListService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -54,5 +55,10 @@ public class TaskListController {
                 taskListMapper.fromDto(taskListDto)
         );
         return taskListMapper.toDto(updatedTaskList);
+    }
+
+    @DeleteMapping(path = "/{task_list_id}")
+    public void deleteTaskList(@PathVariable("task_list_id") UUID id) {
+        taskListService.deleteTaskList(id);
     }
 }
